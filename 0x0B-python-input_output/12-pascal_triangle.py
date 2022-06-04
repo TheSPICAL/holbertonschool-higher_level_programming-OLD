@@ -1,26 +1,25 @@
-#!/bin/python3
-"""Creates a list of lists for pascal_triangle"""
-
-
-def binomialCoeff(n, k):
-    """calculate the binomialCoeff for n and k"""
-    res = 1
-    if (k > n - k):
-        k = n - k
-    for i in range(0, k):
-        res = res * (n - i)
-        res = res // (i + 1)
-    return res
+#!/usr/bin/python3
+"""returns a list of lists of integers representing"""
 
 
 def pascal_triangle(n):
-    """Creates a list of lists for pascal_triangle"""
-    l1 = []
+    """returns a list of lists of integers representing
+    the Pascal’s triangle of n
+    Return:
+        a list of lists of integers representing the triangle.
+    """
     if n <= 0:
-        return l1
+        return []
     else:
-        for line in range(0, n):
-            l1.append([])
-            for i in range(0, line + 1):
-                l1[line].append(binomialCoeff(line, i))
-        return l1
+        my_list = []
+        index = -1
+        for i in range(n):
+            sublist = []
+            for j in range(i + 1):
+                if j == 0 or j == i:
+                    sublist.append(1)
+                else:
+                    sublist.append(my_list[index][j - 1] + my_list[index][j])
+            index += 1
+            my_list.append(sublist)
+        return 
