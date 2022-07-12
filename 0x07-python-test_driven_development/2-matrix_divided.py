@@ -1,25 +1,34 @@
 #!/usr/bin/python3
-
-"""divides all elements of a matrix
+"""2-matrix_divided
+this module has the function matrix_divided
 """
 
 
 def matrix_divided(matrix, div):
-    """divides all elements of matrix
+    """matrix_divided
+    this will divide a matrix over the div argument
+        matrix must be a matrix (list of lists) of integers/floats
+        Each row of the matrix must have the same size
+        div must be a number
+        and you cannot divide by zero
     """
-    for row in matrix:
-        if len(row) != len(matrix[0]):
+    if type(matrix) is not list:
+        raise TypeError("matrix must be a matrix (list of lists) \
+of integers/floats")
+    for elem in matrix:
+        if type(elem) is not list:
+            raise TypeError("matrix must be a matrix (list of lists) \
+of integers/floats")
+        if len(elem) != len(matrix[0]):
             raise TypeError("Each row of the matrix must have the same size")
-        for element in row:
-            if not isinstance(element, (float, int)):
-                raise TypeError("matrix must be a matrix\
-                                (list of lists) of integers/floats")
-    if not isinstance(div, (float, int)):
+
+    if type(div) not in (int, float):
         raise TypeError("div must be a number")
+
     if div == 0:
         raise ZeroDivisionError("division by zero")
 
-    new = []
-    for row in matrix:
-        new.append(list(map(lambda x: round(x / div, 2), row)))
-    return new
+    new_matrix = []
+    for e in matrix[:]:
+        new_matrix.append(list(map(lambda num: round((num / div), 2), e)))
+    return new_matrix

@@ -1,13 +1,24 @@
 #!/usr/bin/python3
-"""adds two integers
+"""0-add_integer Module
+This module is for adding the variable 'a' and 'b' together
 """
 
 
 def add_integer(a, b=98):
-    """adds two integers
+    """add_integer function
+    this function adds var 'a' to var 'b'
+    the variables 'a' and 'b' have to be of type int or float
+    incase 'a' or 'b' is a float it will be converted to an integer
+    the return value is the a + b and is an integer
     """
-    if type(a) is not int and type(a) is not float:
+    if type(a) not in (int, float):
         raise TypeError("a must be an integer")
-    if type(b) is not int and type(b) is not float:
+    if type(b) not in (int, float):
         raise TypeError("b must be an integer")
-    return int(a) + int(b)
+
+    if type(a) is float:
+        a = int(a)
+    if type(b) is float:
+        b = int(b)
+
+    return a + b
